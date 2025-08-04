@@ -1,8 +1,13 @@
+#include "hash/HashCalculator.cpp"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <sstream>
 #include <string>
 #include "hash/Hash.hpp"
+#include "hash/HashCalculator.hpp"
+
+using namespace testing;
 
 namespace
 {
@@ -10,7 +15,7 @@ std::string to_string(const uint8_t* md_value, const size_t size)
 {
     std::stringstream sha{};
     sha << std::setbase(16) << std::noshowbase;
-    for (auto i = 0; i < size; i++)
+    for (auto i{0u}; i < size; ++i)
     {
         sha << static_cast<uint32_t>(md_value[i]);
     }
@@ -18,7 +23,7 @@ std::string to_string(const uint8_t* md_value, const size_t size)
 }
 } // namespace
 
-namespace testing
+namespace hash
 {
 TEST(Hash, testHashType)
 {
@@ -34,7 +39,8 @@ TEST(Hash, testHashCalculator)
     calc.update(data, sizeof(data));
     hash::Hash hash;
     calc.hash(hash);
+    // printf("Hash: %s\n", to_string(hash, hash::hashSize).c_str());
     ASSERT_THAT(
         to_string(hash, hash::hashSize), Eq("5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"));
 }
-} // namespace testing
+} // namespace hash

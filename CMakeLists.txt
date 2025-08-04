@@ -33,15 +33,5 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
   
 include_directories(src)
-  
-add_executable(bchain_test)
-target_link_libraries(bchain_test
-  OpenSSL::SSL
-  GTest::gtest_main
-  GTest::gmock_main
-)
-
 add_subdirectory(src)
-  
 include(GoogleTest)
-gtest_discover_tests(bchain_test)

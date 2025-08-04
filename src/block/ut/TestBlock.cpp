@@ -1,6 +1,7 @@
+#include "block/Block.hpp"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include "block/Block.hpp"
 
 namespace testing
 {

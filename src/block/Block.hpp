@@ -4,7 +4,7 @@
 #include <string>
 #include "hash/hash.hpp"
 
-namespace bchain
+namespace block
 {
 class Block
 {
@@ -20,14 +20,14 @@ public:
     hash::Hash& getHashBlock() { return hashBlock; }
     void generateHash()
     {
-        hash::Hash hash;
+        [[maybe_unused]] hash::Hash hash;
         // std::string sdata{
         // std::to_string(index) + precedentHash + std::to_string(timestamp) + data + std::to_string(nonce)};
         // hash::hash((const hash::Data*)sdata.c_str(), sdata.size(), hash);
         // hashBlock = hash;
     }
     hash::Hash& getPrecedentHash() { return precedentHash; }
-    void setPrecedentHash(const hash::Hash& hash)
+    void setPrecedentHash([[maybe_unused]] const hash::Hash& hash)
     {
         // precedentHash = hash;
     }
@@ -40,4 +40,4 @@ private:
     hash::Hash hashBlock;
     int nonce{};
 };
-} // namespace bchain
+} // namespace block
